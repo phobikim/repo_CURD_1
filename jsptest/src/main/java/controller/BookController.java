@@ -1,15 +1,19 @@
 package controller;
 
+import java.io.Console;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import action.CRUDAction;
+import action.ListBookAction;
 import dao.BookDao;
 import vo.BookVo;
 
@@ -32,20 +36,11 @@ public class BookController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		/*insert
-		 * request.setCharacterEncoding("utf-8"); int no =
-		 * Integer.parseInt(request.getParameter("no")); String name =
-		 * request.getParameter("name"); String publisher =
-		 * request.getParameter("publisher"); String writer =
-		 * request.getParameter("writer"); int price =
-		 * Integer.parseInt(request.getParameter("price"));
-		 */
-		BookDao dao = BookDao.getIntance();
-		ArrayList<BookVo> list = dao.getAllList();
-		PrintWriter out = response.getWriter();
-		out.print(list.toString());
-		out.print("listy");
-		System.out.println(list);
+		System.out.println("request:" + request.getRequestURL());
+		System.out.println("request2:"+request.getRealPath(getServletName()));
+		System.out.println("response:"+response.getStatus());
+		connect(request, response);
+		
 	}
 
 	/**
@@ -53,10 +48,22 @@ public class BookController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		connect(request, response);
 	}
 	private void connect(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+		String uri = request.getRequestURI();
 		
+		String cmd = uri.substring(uri.lastIndexOf("/")+1);
+		CRUDAction action;
+		String viewPage="";
+		
+		if(cmd.equals("listBook.do")) {
+			action = new ListBookAction();
+			viewPage = action.whichJsp(request, response);
+		}
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
+		dispatcher.forward(request, response);
 		
 	}
 }
