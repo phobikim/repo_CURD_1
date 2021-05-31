@@ -2,3 +2,4 @@ test2
 rabase/2 커밋1
 rabase/2 커밋2
 re/2 -1
+re/2 -2
