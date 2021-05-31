@@ -46,7 +46,8 @@ public class BookDao {
 				list.add(book);
 			}
 		}catch (Exception e) {
-			System.out.println("예외 발생:"+e.getStackTrace());
+			System.out.println("예외 발생:"+e.getStackTrace()+e.getMessage());
+			
 		}
 		return list;
 	}

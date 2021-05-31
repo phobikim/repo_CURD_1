@@ -15,7 +15,10 @@
 			<td>도서 이름</td>
 		</tr>
 		<c:forEach var="b" items="${list }">
+		<tr>
 			<td>${b.no }</td>
+			<td>${b.name }</td>
+		</tr>
 		</c:forEach>
 		
 	</table>
