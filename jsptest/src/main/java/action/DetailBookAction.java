@@ -10,15 +10,16 @@ import javax.servlet.http.HttpServletResponse;
 import dao.BookDao;
 import vo.BookVo;
 
-public class ListBookAction implements CRUDAction{
+public class DetailBookAction implements CRUDAction {
 
 	@Override
 	public String conn(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int no = Integer.parseInt(request.getParameter("no"));
 		BookDao dao = BookDao.getIntance();
-		ArrayList<BookVo> list = dao.getAllList();
+		BookVo vo  = dao.getDetailList(no);
+		request.setAttribute("vo", vo);
 		
-		request.setAttribute("list", list);
-		return "listBook.jsp";
+		return "detailBook.jsp";
 	}
 
 }

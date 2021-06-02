@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.CRUDAction;
+import action.DetailBookAction;
 import action.ListBookAction;
 import dao.BookDao;
 import vo.BookVo;
@@ -57,9 +58,13 @@ public class BookController extends HttpServlet {
 		CRUDAction action;
 		String viewPage="";
 		
-		if(cmd.equals("listbook.min")) {
+		if(cmd.equals("listBook.min")) {
 			action = new ListBookAction();
-			viewPage = action.whichJsp(request, response);
+			viewPage = action.conn(request, response);
+		}
+		else if(cmd.equals("detailBook.min")) {
+			action = new DetailBookAction();
+			viewPage = action.conn(request, response);
 		}
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
