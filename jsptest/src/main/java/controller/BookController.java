@@ -20,7 +20,7 @@ import vo.BookVo;
 /**
  * Servlet implementation class BookController
  */
-@WebServlet("/book")
+
 public class BookController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -57,7 +57,7 @@ public class BookController extends HttpServlet {
 		CRUDAction action;
 		String viewPage="";
 		
-		if(cmd.equals("listBook.do")) {
+		if(cmd.equals("listbook.min")) {
 			action = new ListBookAction();
 			viewPage = action.whichJsp(request, response);
 		}
