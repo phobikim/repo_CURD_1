@@ -17,7 +17,7 @@
 		<c:forEach var="b" items="${list }">
 		<tr>
 			<td>${b.no }</td>
-			<td>${b.name }</td>
+			<td><a href="detailBook.min?no=${b.no }">${b.name }</a></td>
 		</tr>
 		</c:forEach>
 		
