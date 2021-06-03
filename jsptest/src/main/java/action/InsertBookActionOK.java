@@ -9,12 +9,18 @@ import javax.servlet.http.HttpServletResponse;
 import dao.BookDao;
 import vo.BookVo;
 
-public class InsertBookAction implements CRUDAction{
+public class InsertBookActionOK implements CRUDAction{
 
 	@Override
 	public String conn(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("utf-8");
+		BookDao dao = BookDao.getIntance();
+		BookVo vo = new BookVo();
+		vo.setNo(Integer.parseInt(request.getParameter("no")));
 		
-		return "insertBook.jsp";
+		dao.insertBookList(null);
+		
+		return "listBook.jsp";
 	}
 
 }

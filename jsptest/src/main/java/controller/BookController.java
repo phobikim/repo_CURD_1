@@ -71,6 +71,9 @@ public class BookController extends HttpServlet {
 			action = new InsertBookAction();
 			viewPage = action.conn(request, response);
 		}
+		else if(cmd.equals("insertBookOK.min")) {
+			
+		}
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
 		dispatcher.forward(request, response);
 		

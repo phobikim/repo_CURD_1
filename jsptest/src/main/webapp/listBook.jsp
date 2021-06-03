@@ -23,6 +23,6 @@
 		
 	</table>
 	
-	<a href="insertBook.jsp">도서 등록하기</a>
+	<a href="insertBook.min">도서 등록하기</a>
 </body>
 </html>
