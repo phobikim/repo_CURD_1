@@ -39,9 +39,7 @@ public class BookController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("request:" + request.getRequestURL());
-		System.out.println("request2:"+request.getRealPath(getServletName()));
-		System.out.println("response:"+response.getStatus());
+		System.out.println("Get 으로 호출");
 		connect(request, response);
 		
 	}
@@ -50,7 +48,7 @@ public class BookController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		System.out.println("Post 으로 호출");
 		connect(request, response);
 	}
 	private void connect(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
