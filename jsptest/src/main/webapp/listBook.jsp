@@ -22,5 +22,7 @@
 		</c:forEach>
 		
 	</table>
+	
+	<a href="insertBook.jsp">도서 등록하기</a>
 </body>
 </html>

@@ -23,7 +23,14 @@ public class BookDao {
 		}
 		return dao;
 	}
-	//상세목록 가져오기
+	//테이블 내용 추가 : Insert
+	public int insertBookList(BookVo vo) {
+		int result = -1;
+		
+		return result;
+	}
+	
+	//상세목록 가져오기 Read Detail
 	public BookVo getDetailList(int no) {
 		BookVo vo = new BookVo();
 		ArrayList<BookVo> list = new ArrayList<BookVo>();

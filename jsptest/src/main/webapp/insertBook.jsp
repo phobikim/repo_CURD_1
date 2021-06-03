@@ -7,7 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="book" method="post">
+	<h2>도서 등록하기</h2>
+	
+	<form action="insertBook.min" method="post">
 		도서번호 : <input type="text" name="no"><br>
 		도서이름 : <input type="text" name="name"><br>
 		출판사명 : <input type="text" name="publisher"><br>

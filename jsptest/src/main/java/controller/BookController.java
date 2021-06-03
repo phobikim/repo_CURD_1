@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import action.CRUDAction;
 import action.DetailBookAction;
+import action.InsertBookAction;
 import action.ListBookAction;
 import dao.BookDao;
 import vo.BookVo;
@@ -66,7 +67,10 @@ public class BookController extends HttpServlet {
 			action = new DetailBookAction();
 			viewPage = action.conn(request, response);
 		}
-		
+		else if(cmd.equals("insertBook.min")) {
+			action = new InsertBookAction();
+			viewPage = action.conn(request, response);
+		}
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
 		dispatcher.forward(request, response);
 		
