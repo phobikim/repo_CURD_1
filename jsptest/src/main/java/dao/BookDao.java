@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import JDBC.DBManager;
 import vo.BookVo;
 
 
@@ -28,15 +29,12 @@ public class BookDao {
 		ArrayList<BookVo> list = new ArrayList<BookVo>();
 		String sql = "select * from book2 where no = ?";
 		try {
-			Class.forName("oracle.jdbc.driver.OracleDriver");
-			String url = "jdbc:oracle:thin:@192.168.0.105:1521:xe";
-			String user = "MIN";
-			String pwd = "min";
-			Connection conn = DriverManager.getConnection(url,user,pwd);
+			Connection conn = DBManager.conn();
 			
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, no);
 			ResultSet rs = pstmt.executeQuery();
+			
 			if(rs.next()) {
 				vo.setNo(rs.getInt(1));
 				vo.setName(rs.getString(2));
@@ -44,22 +42,14 @@ public class BookDao {
 				vo.setWriter(rs.getString(4));
 				vo.setPrice(rs.getInt(5));
 			}
-			if (rs != null) {
-				rs.close();
-			}
-
-			if (pstmt != null) {
-				pstmt.close();
-			}
-
-			if (conn != null) {
-				conn.close();
-			}
+			
+			DBManager.close(conn, pstmt, rs);
 			
 		}catch (Exception e) {
 			System.out.println("예외 발생:"+e.getStackTrace()+e.getMessage());
 			
 		}
+		
 		return vo;
 		
 	}
@@ -69,11 +59,7 @@ public class BookDao {
 		//sql문 생성
 		String sql = "select * from book2";
 		try {
-			Class.forName("oracle.jdbc.driver.OracleDriver");
-			String url = "jdbc:oracle:thin:@192.168.0.105:1521:xe";
-			String user = "MIN";
-			String pwd = "min";
-			Connection conn = DriverManager.getConnection(url,user,pwd);
+			Connection conn = DBManager.conn();
 			Statement stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(sql);
 			
@@ -86,21 +72,11 @@ public class BookDao {
 				book.setPrice(rs.getInt(5));
 				list.add(book);
 			}
-
-			if (rs != null) {
-				rs.close();
-			}
-
-			if (stmt != null) {
-				stmt.close();
-			}
-
-			if (conn != null) {
-				conn.close();
-			}
+			
+			DBManager.close(conn, stmt, rs);
+			
 		}catch (Exception e) {
 			System.out.println("예외 발생:"+e.getStackTrace()+e.getMessage());
-			
 		}
 		return list;
 	}
