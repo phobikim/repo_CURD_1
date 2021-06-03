@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+
 <h2>curd2 에서 작업중</h2>
 <h2>repo_crud1 저장소 입니다.</h2>
 <h2>repo_crud2 저장소 입니당!></h2>
@@ -17,6 +18,9 @@
 		나이 : <input type="text" name="age"><br>
 		<input type="submit" value="확인">
 </form>
+
+<h2> crud2 ->  feature/1 브랜치에서 commit </h2>
+
 
 
 </body>
