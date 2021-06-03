@@ -24,7 +24,7 @@ public class InsertBookActionOK implements CRUDAction{
 		
 		dao.insertBookList(vo);
 		
-		return "listBook.jsp";
+		return "listBook.min";
 	}
 
 }
