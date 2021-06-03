@@ -17,8 +17,12 @@ public class InsertBookActionOK implements CRUDAction{
 		BookDao dao = BookDao.getIntance();
 		BookVo vo = new BookVo();
 		vo.setNo(Integer.parseInt(request.getParameter("no")));
+		vo.setName(request.getParameter("name"));
+		vo.setPublisher(request.getParameter("publisher"));
+		vo.setWriter(request.getParameter("writer"));
+		vo.setPrice(Integer.parseInt(request.getParameter("price")));
 		
-		dao.insertBookList(null);
+		dao.insertBookList(vo);
 		
 		return "listBook.jsp";
 	}
