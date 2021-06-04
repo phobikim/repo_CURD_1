@@ -26,16 +26,15 @@ public class BookDao {
 	//테이블 내용 추가 : Insert
 	public int insertBookList(BookVo vo) {
 		int result = -1;
-		String sql = "insert into book2 values (?,?,?,?,?)";
+		String sql = "insert into book2 values (seq_book2.nextval,?,?,?,?)";
 		try {
 			Connection conn = DBManager.conn();
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			
-			pstmt.setInt(1, vo.getNo());
-			pstmt.setString(2, vo.getName());
-			pstmt.setString(3, vo.getPublisher());
-			pstmt.setString(4, vo.getWriter());
-			pstmt.setInt(5, vo.getPrice());
+			pstmt.setString(1, vo.getName());
+			pstmt.setString(2, vo.getPublisher());
+			pstmt.setString(3, vo.getWriter());
+			pstmt.setInt(4, vo.getPrice());
 			
 			result = pstmt.executeUpdate();
 			DBManager.close(conn, pstmt, null);

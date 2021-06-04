@@ -1,6 +1,7 @@
 package action;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import javax.servlet.ServletException;
@@ -12,7 +13,7 @@ import com.google.gson.Gson;
 import dao.BookDao;
 import vo.BookVo;
 
-public class ListBookAction implements CRUDAction{
+public class readAction implements CRUDAction{
 
 	@Override
 	public String conn(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -26,5 +27,4 @@ public class ListBookAction implements CRUDAction{
 		String jsonList = gson.toJson(list);
 		return jsonList;
 	}
-
 }

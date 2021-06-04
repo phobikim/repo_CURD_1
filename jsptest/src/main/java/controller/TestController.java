@@ -1,36 +1,28 @@
 package controller;
 
-import java.io.Console;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.CRUDAction;
-import action.DetailBookAction;
-import action.InsertBookAction;
-import action.InsertBookActionOK;
-import action.ListBookAction;
-import dao.BookDao;
-import vo.BookVo;
+import action.readAction;
 
 /**
- * Servlet implementation class BookController
+ * Servlet implementation class TestController
  */
 
-public class BookController extends HttpServlet {
+public class TestController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BookController() {
+    public TestController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -39,34 +31,29 @@ public class BookController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("Get 으로 호출");
-		connect(request, response);
-		
+		System.out.println("TEST get");
+		process(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("Post 으로 호출");
-		connect(request, response);
+		System.out.println("TEST post");
+		process(request, response);
 	}
-	private void connect(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+	
+	protected void process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String uri = request.getRequestURI();
-		
 		String cmd = uri.substring(uri.lastIndexOf("/")+1);
 		CRUDAction action;
-		
-		if(cmd.equals("listBook.min")) {
-			action = new ListBookAction();
+		if(cmd.equals("read.test")) {
+			action = new readAction();
 			String json = action.conn(request, response);
 			PrintWriter out = response.getWriter();
 			out.write(json);
 		}
-		else if(cmd.equals("insertBookOK.min")) {
-			action = new InsertBookActionOK();
-		}
-
+		
 		
 	}
 }

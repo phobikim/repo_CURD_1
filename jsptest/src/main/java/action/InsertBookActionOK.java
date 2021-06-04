@@ -14,17 +14,25 @@ public class InsertBookActionOK implements CRUDAction{
 	@Override
 	public String conn(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
+		response.setCharacterEncoding("utf-8");
+		response.setContentType("application/json");
+		
+		String name = request.getParameter("name");
+		String publisher = request.getParameter("publisher");
+		String writer = request.getParameter("writer");
+		int price = Integer.parseInt(request.getParameter("price"));
+		
+		BookVo vo = new BookVo(name,publisher,writer,price);
 		BookDao dao = BookDao.getIntance();
-		BookVo vo = new BookVo();
-		vo.setNo(Integer.parseInt(request.getParameter("no")));
-		vo.setName(request.getParameter("name"));
-		vo.setPublisher(request.getParameter("publisher"));
-		vo.setWriter(request.getParameter("writer"));
-		vo.setPrice(Integer.parseInt(request.getParameter("price")));
-		
-		dao.insertBookList(vo);
-		
-		return "listBook.min";
+		int re = dao.insertBookList(vo);
+		String msg;
+		if(re==1) {
+			msg = "insert 성공";
+		}else {
+			msg="insert 실패";
+		}
+		return msg;
 	}
+
 
 }
