@@ -65,6 +65,7 @@ public class BookController extends HttpServlet {
 		}
 		else if(cmd.equals("insertBookOK.min")) {
 			action = new InsertBookActionOK();
+			action.conn(request, response);
 		}
 
 		

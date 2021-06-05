@@ -13,9 +13,10 @@ public class InsertBookActionOK implements CRUDAction{
 
 	@Override
 	public String conn(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("action 호출");
 		request.setCharacterEncoding("utf-8");
-		response.setCharacterEncoding("utf-8");
-		response.setContentType("application/json");
+		//response.setCharacterEncoding("utf-8");
+		//response.setContentType("application/json");
 		
 		String name = request.getParameter("name");
 		String publisher = request.getParameter("publisher");
