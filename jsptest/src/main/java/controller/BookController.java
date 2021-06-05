@@ -1,24 +1,16 @@
 package controller;
 
-import java.io.Console;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.CRUDAction;
-import action.DetailBookAction;
-import action.InsertBookAction;
 import action.InsertBookActionOK;
 import action.ListBookAction;
-import dao.BookDao;
-import vo.BookVo;
 
 /**
  * Servlet implementation class BookController
@@ -39,7 +31,6 @@ public class BookController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("Get 으로 호출");
 		connect(request, response);
 		
 	}
@@ -48,7 +39,6 @@ public class BookController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("Post 으로 호출");
 		connect(request, response);
 	}
 	private void connect(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
