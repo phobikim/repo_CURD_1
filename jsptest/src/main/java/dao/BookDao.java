@@ -82,7 +82,7 @@ public class BookDao {
 	public ArrayList<BookVo> getAllList() {
 		ArrayList<BookVo> list = new ArrayList<BookVo>();
 		//sql문 생성
-		String sql = "select * from book2";
+		String sql = "select * from book2 order by NO";
 		try {
 			Connection conn = DBManager.conn();
 			Statement stmt = conn.createStatement();
