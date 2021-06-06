@@ -21,7 +21,6 @@ public class UpdateBookAction implements CRUDAction{
 		int price = Integer.parseInt(request.getParameter("price"));
 		
 		BookVo vo = new BookVo(no, name, publisher, writer, price);
-		System.out.println(vo.toString());
 		int re = dao.updateBookList(vo);
 
 		return "msg:"+re;
