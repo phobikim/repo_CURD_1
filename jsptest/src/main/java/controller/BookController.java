@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import action.CRUDAction;
 import action.InsertBookActionOK;
 import action.ListBookAction;
+import action.UpdateBookAction;
 
 /**
  * Servlet implementation class BookController
@@ -55,6 +56,10 @@ public class BookController extends HttpServlet {
 		}
 		else if(cmd.equals("insertBookOK.min")) {
 			action = new InsertBookActionOK();
+			action.conn(request, response);
+		}
+		else if(cmd.equals("updateBook.min")) {
+			action = new UpdateBookAction();
 			action.conn(request, response);
 		}
 

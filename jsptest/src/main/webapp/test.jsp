@@ -28,6 +28,7 @@ $(document).ready(function(){
 		$("tr").removeClass("active");
 		let td_arr = $(this).find("td");
 		
+		$("#no").val(  $(td_arr[0]).text()   );
 		$("#name").val(  $(td_arr[1]).text()   );
 		$("#publisher").val(  $(td_arr[2]).text()   );
 		$("#writer").val(  $(td_arr[3]).text()  );
@@ -76,17 +77,16 @@ $(document).ready(function(){
 			$("#info").text("info.. 통신오류/ "+ jqXHR.statusText + " ("+jqXHR.status+")");
 		})
 	}
-/* 	//도서 목록 가져오기 = read 버튼
+	//도서 목록 가져오기 = read 버튼
 	$("#read").click(function(){
 		$("#insert").css("visibility","hidden");
 		$("#insert").css("display","none");
 		loadList();
-	}); */
+	});
 
 	//도서 추가 ajax 통신
 	$("#submit").click(function(){
 		let data = $("#input").serializeArray();
-		console.log(data);
 		$.ajax({
 			url:"/insertBookOK.min",
 			method : "POST",
@@ -111,7 +111,24 @@ $(document).ready(function(){
 	//도서 추가 끝==========================================================
 	
 	$("#update").click(function(){
-		alert("수정");
+		let data = $("#input").serializeArray();
+		console.log(data);
+		$.ajax({
+			url:"/updateBook.min",
+			method: "POST",
+			data:data
+		})
+		.done(function(){
+			$("#tableinfo").css("visibility","hidden");
+			$("#tableinfo").css("display","none");
+			alert("도서 수정 성공" );
+			$("#info").text("info.. 도서 수정 완료 !!")
+			loadList();
+		})
+		.fail(function(jqXHR, textStatus, errorThrown){
+			$("#info").text("info.. 수정 오류/ "+ jqXHR.statusText + " ("+jqXHR.status+")");
+		})
+		
 	});
 	
 	$("#delete").click(function(){
@@ -129,7 +146,8 @@ $(document).ready(function(){
 	<div class="panel panel-default">
     	<div class="panel-body">
     		<p id="info">info..</p>
-			<!--  <button id="read">도서 목록</button>
+			<!--  
+			<button id="read" class="btn btn-success">도서 목록</button>
     		<button class="btn btn-success" id="creare_div">도서 추가</button>
 			<button class="btn btn-warning" id="update">도서 수정</button>
 			<button class="btn btn-danger" id="delete">도서 삭제</button>
@@ -166,6 +184,10 @@ $(document).ready(function(){
 			<h3 id="menu_info"><small>정보를 입력해주세요.</small></h3>
 			<hr>
 			<form id="input">
+				<div class="form-group">
+					<label>도서번호:</label>
+					<input type="text" readonly class="form-control" name="no" id="no">
+			    </div>
 			    <div class="form-group">
 					<label>도서이름:</label>
 					<input type="text" class="form-control" name="name" id="name">

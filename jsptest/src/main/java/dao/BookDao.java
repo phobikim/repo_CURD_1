@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
@@ -23,6 +24,33 @@ public class BookDao {
 		}
 		return dao;
 	}
+	
+	
+	//테이블 내용 수정 : update
+	public int updateBookList(BookVo vo) {
+		int result = -1;
+		String sql = "update book2 set name=?, publisher=?, writer=?, price=? where no=?";
+		try {
+			Connection conn = DBManager.conn();
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, vo.getName());
+			pstmt.setString(2, vo.getPublisher());
+			pstmt.setString(3, vo.getWriter());
+			pstmt.setInt(4, vo.getPrice());
+			pstmt.setInt(5, vo.getNo());
+			
+			result = pstmt.executeUpdate();
+			DBManager.close(conn, pstmt, null);
+			
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		
+		
+		return result;
+	}
+	
+	
 	//테이블 내용 추가 : Insert
 	public int insertBookList(BookVo vo) {
 		int result = -1;
