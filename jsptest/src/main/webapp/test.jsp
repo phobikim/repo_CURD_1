@@ -132,7 +132,23 @@ $(document).ready(function(){
 	});
 	
 	$("#delete").click(function(){
-		alert("삭제");
+		let no = $("#no").val();
+		let data = {no:no};
+		$.ajax({
+			url: "/deleteBook.min",
+			method : "POST",
+			data : data
+		})
+		.done(function(){
+			$("#tableinfo").css("visibility","hidden");
+			$("#tableinfo").css("display","none");
+			alert("도서 삭제 성공" );
+			$("#info").text("info.. 도서 삭제 완료 !!")
+			loadList();
+		})
+		.fail(function(jqXHR, textStatus, errorThrown){
+			$("#info").text("info.. 삭제 오류/ "+ jqXHR.statusText + " ("+jqXHR.status+")");
+		})
 	});
 		
 

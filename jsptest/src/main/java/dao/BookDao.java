@@ -24,7 +24,22 @@ public class BookDao {
 		}
 		return dao;
 	}
-	
+	//테이블 내용 삭제 : delete
+	public int deleteBookList(int no) {
+		int result = -1;
+		String sql = "delete book2 where no=?";
+		try {
+			Connection conn = DBManager.conn();
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			
+			result = pstmt.executeUpdate();
+			DBManager.close(conn, pstmt, null);
+		} catch (Exception e) {
+			System.out.println("예외발생:"+e.getMessage());
+		}
+		return result;
+	}
 	
 	//테이블 내용 수정 : update
 	public int updateBookList(BookVo vo) {

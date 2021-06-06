@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.CRUDAction;
+import action.DeleteBookList;
 import action.InsertBookActionOK;
 import action.ListBookAction;
 import action.UpdateBookAction;
@@ -60,6 +61,10 @@ public class BookController extends HttpServlet {
 		}
 		else if(cmd.equals("updateBook.min")) {
 			action = new UpdateBookAction();
+			action.conn(request, response);
+		}
+		else if(cmd.equals("deleteBook.min")) {
+			action = new DeleteBookList();
 			action.conn(request, response);
 		}
 
