@@ -1,5 +1,1 @@
-<<<<<<< .merge_file_a22348
-#conflict 커밋
-=======
-#master
->>>>>>> .merge_file_a22392
+#conflict!!!!!
